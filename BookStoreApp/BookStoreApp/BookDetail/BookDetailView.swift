@@ -10,6 +10,7 @@ import SnapKit
 
 class BookDetailView: UIView {
     
+    // MARK: - UI Components
     let contentView = UIView()
     
     let scrollView: UIScrollView = {
@@ -88,14 +89,15 @@ class BookDetailView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupView()
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupView() {
+    // MARK: - setupUI()
+    private func setupUI() {
         
         addSubview(scrollView)
         addSubview(stackView)

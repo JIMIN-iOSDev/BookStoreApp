@@ -11,6 +11,8 @@ import CoreData
 class CoreDataManager {
     static let shared = CoreDataManager()
     
+    // MARK: - Core Data stack
+    
     private let persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "BookStoreCoreData")
         container.loadPersistentStores { description, error in
@@ -60,6 +62,10 @@ class CoreDataManager {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = SavedBook.fetchRequest()
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         
-        try? persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: context)
+        do {
+            try persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: context)
+        } catch {
+            print("Error executing delete request: \(error)")
+        }
     }
 }

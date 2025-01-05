@@ -10,6 +10,7 @@ import SnapKit
 
 class SelectedBooksView: UIView {
     
+    // MARK: - UI Components
     let tableView: UITableView = {
         let tableview = UITableView()
         tableview.register(UITableViewCell.self, forCellReuseIdentifier: "BookCell")
@@ -30,6 +31,7 @@ class SelectedBooksView: UIView {
         return button
     }()
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -39,6 +41,7 @@ class SelectedBooksView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - setupUI()
     private func setupUI() {
         backgroundColor = .white
         

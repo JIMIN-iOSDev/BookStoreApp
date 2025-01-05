@@ -11,13 +11,9 @@ import SnapKit
 class MainViewController: UIViewController, BookDetailDelegate {
     
     func didAddBook(title: String) {
-        let alert = UIAlertController(title: nil, message: "[\(title) 책 담기 완료!", preferredStyle: .alert)
+        let alert = UIAlertController(title: nil, message: "[\(title)] 책 담기 완료!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "확인", style: .default))
         present(alert, animated: true)
-    }
-    
-    func didDismissDetail() {
-        
     }
     
     private let searchController = UISearchController(searchResultsController: nil)
@@ -78,7 +74,7 @@ class MainViewController: UIViewController, BookDetailDelegate {
     }
 }
 
-
+// MARK: - Extension
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mainView.getBooks().count

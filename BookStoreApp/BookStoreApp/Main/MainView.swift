@@ -12,6 +12,7 @@ class MainView: UIView {
     
     private var books: [Book] = []
     
+    // MARK: - UI Components
     lazy var searchBar: UISearchBar = {
         let search = UISearchBar()
         search.searchBarStyle = .default
@@ -34,14 +35,15 @@ class MainView: UIView {
     override init(frame: CGRect) {
         super.init(frame:  frame)
         
-        configureUI()
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureUI() {
+    // MARK: - setupUI()
+    private func setupUI() {
         [searchBar, listTableView]
             .forEach { self.addSubview($0) }
         

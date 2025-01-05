@@ -12,6 +12,7 @@ class SearchCell: UITableViewCell {
     
     static let reuseIdentifier = "SearchCell"
     
+    // MARK: - UI Components
     private let titleLabel: UILabel = {
         let title = UILabel()
         title.textColor = .black
@@ -41,14 +42,15 @@ class SearchCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        configureUI()
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureUI() {
+    // MARK: - setupUI()
+    private func setupUI() {
         [titleLabel, authorLabel, priceLabel]
             .forEach { contentView.addSubview($0) }
         

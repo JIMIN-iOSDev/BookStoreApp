@@ -8,17 +8,18 @@
 import UIKit
 import SnapKit
 
-
+// MARK: - Protocol
 protocol BookDetailDelegate: AnyObject {
     func didAddBook(title: String)
-    func didDismissDetail()
 }
 
+// MARK: -
 class BookDetailController: UIViewController {
     
     private let bookDetailView = BookDetailView()
     private var book: Book?
     weak var delegate: BookDetailDelegate?
+    
     
     override func loadView() {
         view = bookDetailView
@@ -27,13 +28,7 @@ class BookDetailController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupActions()
-        
-        modalPresentationStyle = .pageSheet
-        if let sheet = sheetPresentationController {
-            sheet.detents = [.large()]
-        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -44,15 +39,14 @@ class BookDetailController: UIViewController {
         }
     }
     
+    
     private func setupActions() {
         bookDetailView.cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         bookDetailView.selectButton.addTarget(self, action: #selector(selectButtonTapped), for: .touchUpInside)
     }
     
     @objc private func cancelButtonTapped() {
-        dismiss(animated: true) {
-            self.delegate?.didDismissDetail()
-        }
+        dismiss(animated: true)
     }
     
     @objc private func selectButtonTapped() {
