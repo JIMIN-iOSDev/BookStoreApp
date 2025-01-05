@@ -62,7 +62,6 @@ class MainViewController: UIViewController, BookDetailDelegate {
                     if books.isEmpty {
                         print("받아온 책 데이터가 없습니다")
                     } else {
-                        print("받아온 책: \(books)")
                         self?.mainView.updateBooks(books)
                     }
                     

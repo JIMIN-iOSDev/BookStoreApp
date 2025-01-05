@@ -8,6 +8,12 @@
 import UIKit
 import SnapKit
 
+
+protocol BookDetailDelegate: AnyObject {
+    func didAddBook(title: String)
+    func didDismissDetail()
+}
+
 class BookDetailController: UIViewController {
     
     private let bookDetailView = BookDetailView()
@@ -88,7 +94,3 @@ class BookDetailController: UIViewController {
     }
 }
 
-protocol BookDetailDelegate: AnyObject {
-    func didAddBook(title: String)
-    func didDismissDetail()
-}

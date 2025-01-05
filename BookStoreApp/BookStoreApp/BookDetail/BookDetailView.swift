@@ -99,11 +99,16 @@ class BookDetailView: UIView {
         
         addSubview(scrollView)
         addSubview(stackView)
-
         scrollView.addSubview(contentView)
         
+        stackView.snp.makeConstraints {
+            $0.bottom.equalTo(safeAreaLayoutGuide).offset(-10)
+            $0.leading.trailing.equalToSuperview().inset(10)
+            $0.height.equalTo(50)
+        }
+        
         scrollView.snp.makeConstraints {
-            $0.edges.equalTo(safeAreaLayoutGuide)
+            $0.top.leading.trailing.equalTo(safeAreaLayoutGuide)
             $0.bottom.equalTo(stackView.snp.top)
         }
         
@@ -139,13 +144,7 @@ class BookDetailView: UIView {
         detailLabel.snp.makeConstraints {
             $0.top.equalTo(priceLabel.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(10)
-            $0.bottom.equalTo(contentView.snp.bottom).offset(-20)
-        }
-        
-        stackView.snp.makeConstraints {
-            $0.bottom.equalTo(safeAreaLayoutGuide).offset(-10)
-            $0.leading.trailing.equalToSuperview().inset(10)
-            $0.height.equalTo(50)
+            $0.bottom.equalToSuperview().offset(-20)
         }
         
         [cancelButton, selectButton]
