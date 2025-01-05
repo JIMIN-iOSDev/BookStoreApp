@@ -14,7 +14,6 @@ class BookDetailView: UIView {
     
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = .cyan
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = true
         return scrollView
@@ -22,18 +21,15 @@ class BookDetailView: UIView {
     
     let titleLabel: UILabel = {
         let title = UILabel()
-        title.backgroundColor = .red
-        title.text = "책 제목"
         title.textColor = .black
         title.textAlignment = .center
         title.font = .boldSystemFont(ofSize: 30)
+        title.numberOfLines = 0
         return title
     }()
     
     let authorLabel: UILabel = {
         let author = UILabel()
-        author.backgroundColor = .orange
-        author.text = "누구누구"
         author.textColor = .gray
         author.textAlignment = .center
         author.font = .systemFont(ofSize: 15)
@@ -42,7 +38,6 @@ class BookDetailView: UIView {
     
     let bookImage: UIImageView = {
         let image = UIImageView()
-        image.backgroundColor = .yellow
         image.contentMode = .scaleAspectFit
         return image
     }()
@@ -59,7 +54,8 @@ class BookDetailView: UIView {
         let detail = UILabel()
         detail.textColor = .black
         detail.textAlignment = .center
-        detail.font = .systemFont(ofSize: 15)
+        detail.font = .systemFont(ofSize: 16)
+        detail.numberOfLines = 0
         return detail
     }()
     
@@ -100,6 +96,7 @@ class BookDetailView: UIView {
     }
     
     private func setupView() {
+        
         addSubview(scrollView)
         addSubview(stackView)
 
@@ -107,6 +104,7 @@ class BookDetailView: UIView {
         
         scrollView.snp.makeConstraints {
             $0.edges.equalTo(safeAreaLayoutGuide)
+            $0.bottom.equalTo(stackView.snp.top)
         }
         
         contentView.snp.makeConstraints {
@@ -115,7 +113,7 @@ class BookDetailView: UIView {
         }
         
         [titleLabel, authorLabel, bookImage, priceLabel, detailLabel]
-            .forEach{ scrollView.addSubview($0) }
+            .forEach{ contentView.addSubview($0) }
         
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(20)
@@ -129,8 +127,8 @@ class BookDetailView: UIView {
         
         bookImage.snp.makeConstraints {
             $0.top.equalTo(authorLabel.snp.bottom).offset(20)
-            $0.leading.trailing.equalToSuperview().inset(10)
-            $0.height.equalTo(300)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(350)
         }
         
         priceLabel.snp.makeConstraints {
@@ -139,9 +137,9 @@ class BookDetailView: UIView {
         }
         
         detailLabel.snp.makeConstraints {
-            $0.top.equalTo(priceLabel.snp.bottom).offset(10)
+            $0.top.equalTo(priceLabel.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(10)
-            $0.bottom.equalToSuperview().offset(-20)
+            $0.bottom.equalTo(contentView.snp.bottom).offset(-20)
         }
         
         stackView.snp.makeConstraints {
@@ -154,11 +152,8 @@ class BookDetailView: UIView {
             .forEach { stackView.addArrangedSubview($0) }
         
         cancelButton.snp.makeConstraints {
-            $0.width.equalTo(70)
-        }
-        
-        selectButton.snp.makeConstraints {
-            $0.width.equalTo(180)
+            $0.width.equalTo(selectButton.snp.width).multipliedBy(0.333)
+            $0.height.equalTo(50)
         }
         
     }

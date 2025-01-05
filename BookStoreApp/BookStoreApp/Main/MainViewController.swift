@@ -8,8 +8,19 @@
 import UIKit
 import SnapKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, BookDetailDelegate {
     
+    func didAddBook(title: String) {
+        let alert = UIAlertController(title: nil, message: "[\(title) 책 담기 완료!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default))
+        present(alert, animated: true)
+    }
+    
+    func didDismissDetail() {
+        
+    }
+    
+    private let searchController = UISearchController(searchResultsController: nil)
     private let mainView = MainView()
     
     
@@ -20,19 +31,10 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        setupView()
         setupDelegates()
         registerCells()
-        setupSearch()
     }
-    
-//    private func setupView() {
-//        view.backgroundColor = .white
-//        
-//        mainView.snp.makeConstraints {
-//            $0.edges.equalToSuperview()
-//        }
-//    }
+
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -40,10 +42,6 @@ class MainViewController: UIViewController {
         mainView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-    }
-    
-    private func setupSearch() {
-        searchBooks(query: "Swift")
     }
     
     private func setupDelegates() {
@@ -74,9 +72,12 @@ class MainViewController: UIViewController {
             }
         }
     }
+    
+    func activateSearchBar() {
+        searchController.isActive = true
+        searchController.searchBar.becomeFirstResponder()
+    }
 }
-
-
 
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
@@ -89,7 +90,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
         let book = mainView.getBooks()[indexPath.row]
-        print("책 제목: \(book.title)")
             cell.configure(with: book)
             return cell
     }
@@ -101,9 +101,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedBook = mainView.getBooks()[indexPath.row]
         let detailVC = BookDetailController()
-        
-        detailVC.modalPresentationStyle = .popover
-        present(detailVC, animated: true, completion: nil)
+        detailVC.delegate = self
+        detailVC.configure(with: selectedBook)
+        detailVC.modalPresentationStyle = .pageSheet
+        present(detailVC, animated: true)
     }
 }
 

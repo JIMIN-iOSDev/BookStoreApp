@@ -26,7 +26,6 @@ class MainView: UIView {
     
     let listTableView: UITableView = {
         let tableview = UITableView()
-        tableview.backgroundColor = .red
         tableview.register(UITableViewCell.self, forCellReuseIdentifier: "BookCell")
         return tableview
     }()
@@ -64,7 +63,6 @@ class MainView: UIView {
     
     func updateBooks(_ newBooks: [Book]) {
         books = newBooks
-        print("업데이트 된 책 목록: \(books)")
         listTableView.reloadData()
     }
 }
