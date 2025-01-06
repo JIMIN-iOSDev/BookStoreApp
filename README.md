@@ -30,5 +30,6 @@
 - SnapKit, URLSession, CoreData
 
 ## API 명세서
-https://developers.kakao.com/docs/latest/ko/daum-search/dev-guide#search-book
+- GET 메서드 사용
+- URL : https://developers.kakao.com/docs/latest/ko/daum-search/dev-guide#search-book
 
