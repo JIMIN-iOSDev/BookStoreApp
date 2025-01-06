@@ -20,13 +20,13 @@
 2024.12.24(화) ~ 2025.01.06(월)
 
 ## 기술 스택
-### Language
+#### Language
 - Swift
 
-### Famework
+#### Famework
 - UIKit
 
-### Others
+#### Others
 - SnapKit, URLSession, CoreData
 
 ## API 명세서
